@@ -224,6 +224,7 @@ LRESULT CBlacklistDlg::OnUserMessageRefresh(WPARAM wParam, LPARAM lParam)
         // Add its children
         for (auto const& child : topLevelEntry.second)
         {
+            if (!child.present) continue;
             auto const childEntryBlacklisted{ (std::end(deviceInstancePathsBlacklisted) != std::find(std::begin(deviceInstancePathsBlacklisted), std::end(deviceInstancePathsBlacklisted), child.deviceInstancePath)) };
             tvInsert.hParent               = hParent;
             tvInsert.itemex.state          = ((topLevelEntryBlacklisted | childEntryBlacklisted) ? LVIS_STATE_CHECKBOX_CHECKED : LVIS_STATE_CHECKBOX_UNCHECKED);
